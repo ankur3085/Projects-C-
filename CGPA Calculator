@@ -1,0 +1,31 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+
+int main() {
+    int n,i;
+    float c;
+    cout<<"Enter the number of subjects"<<endl;
+    cin>>n;
+    int a[n];
+    cout<<"Enter the marks of each subject"<<endl;
+    for(i=0;i<n;i++){
+        cin>>a[i];
+    
+    }
+    cout<<"\nGrade for each sbject is given below respectively:"<<endl;
+    for(i=0;i<n;i++){
+        a[i]=a[i]/10;
+        cout<<a[i]<<" ";
+    }
+    int sum=0;
+    cout<<"\nCGPA of the student is: "<<endl;
+    for(i=0;i<n;i++){
+        sum=sum+a[i];
+        c=sum/n;
+        
+    }
+    cout<<c;
+    
+	return 0;
+}
