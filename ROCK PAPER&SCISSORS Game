@@ -1,0 +1,74 @@
+#include <iostream>
+#include<cstdlib>
+using namespace std;
+const char Rock='r';
+const char Paper='p';
+const char Scissors='s';
+
+char getcomputerinput(){
+    const char Rock='r';
+    const char Paper='p';
+    const char Scissors='s';
+    int output=std::rand()%3;
+    if(output==0){ return 'r';}
+    if(output==1){return 'p';}
+    if(output==2) {return 's';}
+}
+
+char getuserinput(){
+    char c;
+    cout<<"Rock Paper & Scissors Games!"<<endl;
+    cout<<"Enter your choise:"<<endl;
+    cout<<"--------------------------------------"<<endl;
+    cout<<"(r) for rock"<<endl<< "(p) for paper"<<endl<< "(s) for scissors"<<endl;
+    cin>>c;
+    while(c!='r'&&c!='s'&&c!='p'){
+        cout<<"Enter your choise:"<<endl;
+        cout<<"(r) for rock"<<endl<< "(p) for paper"<<endl<< "(s) for scissors"<<endl;
+    }
+    return c;
+    }
+    void showselectedoption(char option){
+        if (option=='r'){cout<<"Rock"<<endl;}
+        if(option=='p'){cout<<"Paper"<<endl;}
+        if(option=='s'){cout<<"Scissors"<<endl;}
+        
+    }
+    void Winner(char Uchoice, char Cchoice){
+        if(Uchoice==Paper&& Cchoice==Rock){
+            cout<<"You Win!! Paper wraps the rock";
+        }
+        else if(Uchoice==Rock&& Cchoice==Scissors){
+            cout<<"You Win!! Scissors is crushed by the rock";
+        }
+        else if(Uchoice==Rock&& Cchoice==Paper){
+            cout<<"You Lost!!Paper wraps the rock";
+        }
+        else if(Uchoice==Scissors&& Cchoice==Rock){
+            cout<<"You Lost!!Scissors is crushed by the rock";
+        }
+        else if(Uchoice==Scissors&& Cchoice==Paper){
+            cout<<"You Win!!Scissors tear the paper in bits";
+        }
+        else if(Uchoice==Paper&& Cchoice==Scissors){
+            cout<<"You Lost!!Scissors tear the paper in bits";
+        }
+        else{
+            cout<<"It's a TIE. Play Again!!";
+        }
+    }
+
+int main() {
+    char Cchoice;
+    char Uchoice;
+    Uchoice=getuserinput();
+    cout<<"Your choice is: "<<endl;
+    showselectedoption(Uchoice);
+    Cchoice=getcomputerinput();
+    cout<<"Computer's choice is: "<<endl;
+    showselectedoption(Cchoice);
+    Winner(Uchoice,Cchoice);
+    
+
+    return 0;
+}
