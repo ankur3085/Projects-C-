@@ -1,0 +1,169 @@
+#include<iostream>
+using namespace std;
+
+class Account{
+    private:
+    string name;
+    int accno;
+    string atype;
+    public:
+    void getaccountdetails(){
+        cout<<"\nEnter Customer Name: \n";
+        cin>>name;
+        cout<<"\nEnter Account Number: \n";
+        cin>>accno;
+        cout<<"\nEnter Account Type: \n";
+        cin>>atype;
+    }
+    void displaydetails(){
+        cout<<"\nCustomer Name:"<<name;
+        cout<<"\nAccount Number: "<<accno;
+        cout<<"\nAccount Type: "<<atype;
+    }
+    
+};
+class Current_account: public Account
+{
+    private:
+    float balance;
+    public:
+    void c_display(){
+        cout<<"\nBalance"<<balance;
+    }
+    void c_deposit(){
+        float deposit;
+        cout<<"\nEnter the amount to deposit: ";
+        cin>>deposit;
+        balance=balance+deposit;
+    }
+    void c_withdrawl(){
+        float withdrawl;
+        cout<<"\nEnter the amount to withdraw: ";
+        cin>>withdrawl;
+        if(balance>=1000){
+            balance=balance-withdrawl;
+            cout<<"\nBalance after withdrawl: "<<balance;
+        }
+        else{
+            cout<<"Insufficient balance";
+        }
+        
+        
+    }
+    
+};
+class Saving_account:public Account
+{
+    private:
+    float sav_balance;
+    public:
+    void  s_display(){
+        cout<<"\nBalance"<<sav_balance;
+    }
+    void s_deposit(){
+        float deposit,interest;
+        cout<<"\nEnter the amount to deopist: ";
+        cin>>deposit;
+        sav_balance=sav_balance+deposit;
+        interest=(sav_balance*2)/100;
+        sav_balance=sav_balance+interest;
+    }
+    void s_withdrawl(){
+        float withdrawl;
+        cout<<"\nBalance"<<sav_balance;
+        cout<<"Enter the amount to withdrawl: ";
+        cin>>withdrawl;
+        if(sav_balance>=500){
+            sav_balance=sav_balance-withdrawl;
+            cout<<"\nBalance amount after withdrawl: "<<sav_balance;
+        }
+        else{
+            cout<<"Insufficient Balance";
+        }
+    }
+    
+};
+int main()
+{
+    Current_account c1;
+    Saving_account s1;
+    char type;
+    cout<<"\nEnter the account type: ";
+    cin>>type;
+    int choice;
+    if(type=='s' || type=='S')
+    {
+        s1.getaccountdetails();
+        while(1){
+            cout<<"\nChoose your choice: ";
+            cout<<"1)  Deposit"<<endl;
+            cout<<"2)  Withdrawl"<<endl;
+            cout<<"3)  Display Balance"<<endl;
+            cout<<"4)  Dispaly with details"<<endl;
+            cout<<"5)  Exit"<<endl;
+            cout<<"Enter your choice: ";
+            cin>>choice;
+            switch(choice){
+                case 1:
+                s1.s_deposit();
+                break;
+                case 2:
+                s1.s_withdrawl();
+                break;
+                case 3:
+                s1.s_display();
+                break;
+                case 4:
+                s1.displaydetails();
+                s1.s_display();
+                break;
+                case 5:
+                goto end;
+                default:
+                cout<<"\n\nEntered choice is invalid,\"TRY AGAIN\"";
+                
+            }
+            
+        }
+    }
+    else if(type=='c' || type=='C')
+    {
+        while(1)
+        {
+            cout<<"\nChoose your choice: ";
+            cout<<"1)  Deposit"<<endl;
+            cout<<"2)  Withdrawl"<<endl;
+            cout<<"3)  Display Balance"<<endl;
+            cout<<"4)  Dispaly with details"<<endl;
+            cout<<"5)  Exit"<<endl;
+            cout<<"Enter your choice: ";
+            cin>>choice;
+            switch(choice)
+            {
+                case 1:
+                c1.c_deposit();
+                break;
+                case 2:
+                c1.c_withdrawl();
+                break;
+                case 3:
+                c1.c_display();
+                break;
+                case 4:
+                c1.displaydetails();
+                c1.c_display();
+                break;
+                case 5:
+                goto end;
+                default:
+                cout<<"\n\nEntered choice is invalid,\"TRY AGAIN\"";
+            }
+        }
+    }
+    else{
+        cout<<"\nInvalid Account Selection";
+    }
+    end:
+    cout<<"Thank you for using our service.Have a nice day ahead.";
+    return 0;
+}
